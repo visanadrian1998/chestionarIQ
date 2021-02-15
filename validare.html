@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Tokenul este valid.Puteti incepe testul.Durata este de 30 de minute.</h3>
+    <input type="button" value="Start test" onclick="return start()">
+</body>
+<script>
+    function start(){
+        let url=window.location.href;
+        url=url.replace(url.split('/')[3], 'chestionar');
+        window.location.href=url;
+    }
+</script>
+</html>
