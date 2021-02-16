@@ -17,32 +17,32 @@
         <h4>Timp ramas:</h4>
         <p id="timer"></p>
     </div>
-    <form action="/postRezultate" name="chestionar" id="chestionar" method="POST">
+    <form name="chestionar" id="chestionar" method="POST">
         <div>
             <span>Nume</span>
-            <input type="text" name="nume">
+            <input type="text" class="input" name="nume">
             <span>Prenume</span>
-            <input type="text" name="prenume">
+            <input type="text" class="input" name="prenume">
             <span>Email</span>
-            <input type="text" name="email">
+            <input type="text" class="input" name="email">
         </div>
         <div>
             <p>1. Care dintre cele 5 variante de raspuns de mai jos reprezinta cea mai buna comparatie? LIVED este fata de DEVIL ceea ce 6323 este pentru:</p>
-            <p><input type="radio" name="question1" value="2336">2336</p>
-            <p><input type="radio" name="question1" value="6232">6232</p>
-            <p><input type="radio" name="question1" value="3236">3236</p>
-            <p><input type="radio" name="question1" value="3326">3326</p>
-            <p><input type="radio" name="question1" value="6332">6332</p>
+            <p><input type="radio" class="input" name="question1" value="2336">2336</p>
+            <p><input type="radio" class="input" name="question1" value="6232">6232</p>
+            <p><input type="radio" class="input" name="question1" value="3236">3236</p>
+            <p><input type="radio" class="input" name="question1" value="3326">3326</p>
+            <p><input type="radio" class="input" name="question1" value="6332">6332</p>
         </div>
         <div>
             <p>2. Care dintre cele 5 cuvinte nu se aseamana cu celelalte 4?</p>
-            <p><input type="radio" name="question2" value="Cal">Cal</p>
-            <p><input type="radio" name="question2" value="Cangur">Cangur</p>
-            <p><input type="radio" name="question2" value="Vaca">Vaca</p>
-            <p><input type="radio" name="question2" value="Caprioara">Caprioara</p>
-            <p><input type="radio" name="question2" value="Magar">Magar</p>
+            <p><input type="radio" class="input" name="question2" value="Cal">Cal</p>
+            <p><input type="radio" class="input" name="question2" value="Cangur">Cangur</p>
+            <p><input type="radio" class="input" name="question2" value="Vaca">Vaca</p>
+            <p><input type="radio" class="input" name="question2" value="Caprioara">Caprioara</p>
+            <p><input type="radio" class="input" name="question2" value="Magar">Magar</p>
         </div>
-        <input type="submit" value="Finalizeaza test">
+        <input type="button" value="Finalizeaza test" onclick="reincarcaPagina()">
     </form>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -61,11 +61,11 @@
         time--;
         if(time<0){
             clearInterval(interval);
-            window.location.href="http://localhost:3000/rezultat";
+            reincarcaPagina();
          }
     }
     
-    $(document).on("click",function() {
+    $(".input").change(function() {
         calculeazaPunctaj();
     })
     function calculeazaPunctaj() {
@@ -75,17 +75,22 @@
         if(q1 == "6232") c++;
         if(q2 == "Cangur") c++;
         let rezultat= {};
+        rezultat.token=window.location.href.split("/")[4];
         rezultat.punctaj=c;
-        // $.ajax("/postRezultate",{
-        //     method: 'POST',
-        //     data:rezultat,
-        //     success: function() {
-        //     console.log("trimis");
-        //     },
-        //     error: function(){
-        //         console.log("failure");
-        //     }
-        // })
+        rezultat.form = $("#chestionar").serializeArray();
+        $.ajax("/postRezultate",{
+            method: 'POST',
+            data:rezultat,
+            success: function() {
+            console.log("trimis");
+            },
+            error: function(){
+                console.log("failure");
+            }
+        })
+    }
+    function reincarcaPagina() {
+        location.reload();
     }
     
 </script>
