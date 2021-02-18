@@ -5,9 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .timerContainer{
+        position:fixed;
+        top:0;
+        right:0;
+    }
+</style>
 <body>
+    <div class="timerContainer">
+        <h4>Timp ramas:</h4>
+        <p id="timer"></p>
+    </div>
     <form name="chestionar" id="chestionar" method="POST">
-        
+        <div>
+            <span>Nume</span>
+            <input type="text" class="input" name="nume">
+            <span>Prenume</span>
+            <input type="text" class="input" name="prenume">
+            <span>Email</span>
+            <input type="text" class="input" name="email">
+        </div>
+        <input type="button" id="submitButton" value="Finalizeaza test" onclick="reincarcaPagina()">
     </form>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax("/chestionarData",{
+            method: "GET",
+            success: function(res) {
+            let chestionarData=res;
+            for(let i = 0; i < chestionarData.length;i++){
+                const div = document.createElement("div");
+                const questionp=document.createElement("p").innerHTML=chestionarData[i].question;
+                div.append(questionp);
+                chestionarData[i].answers.forEach(answer => {
+                    const answerp = document.createElement("p");
+                    const answerInput = document.createElement("input");
+                    answerInput.setAttribute("type","radio");
+                    answerInput.className="input";
+                    answerInput.setAttribute("name","question"+i);
+                    answerInput.value=answer;
+                    answerp.append(answerInput);
+                    answerp.append(answer);
+                    div.append(answerp);
+                })
+                $("#submitButton").before(div);
+            }
+            $(".input").change(function() {
+                calculeazaPunctaj();
+            })
+            },
+            error: function(res){
+                console.log("failure",res);
+            }
+        })
+});
+    const startingMinutes=1;
+    let time=startingMinutes * 60;
+    const timer = document.getElementById("timer");
+    let interval=setInterval(updateCountdown, 1000);
+    function updateCountdown() {
+        const minutes = Math.floor(time/60);
+        let seconds = time % 60;
+        seconds = seconds < 10 ? "0"+seconds:seconds;
+        timer.innerHTML = `${minutes}:${seconds}`;
+        time--;
+        if(time<0){
+            clearInterval(interval);
+            reincarcaPagina();
+         }
+    }
+    
+    
+    function calculeazaPunctaj() {
+        let rezultat= {};
+        rezultat.token=window.location.href.split("/")[4];
+        rezultat.form = $("#chestionar").serializeArray();
+        $.ajax("/postRezultate",{
+            method: 'POST',
+            data:rezultat,
+            success: function() {
+            console.log("trimis");
+            },
+            error: function(){
+                console.log("failure");
+            }
+        })
+    }
+
+    function reincarcaPagina() {
+        location.reload();
+    }
+</script>
 </html>
