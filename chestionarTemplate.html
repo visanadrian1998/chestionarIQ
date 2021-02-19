@@ -56,7 +56,7 @@
                     const answerInput = document.createElement("input");
                     answerInput.setAttribute("type","radio");
                     answerInput.className="input";
-                    answerInput.setAttribute("name","question"+chestionarData[i].id);
+                    answerInput.setAttribute("name",chestionarData[i].id);
                     answerInput.value=answer;
                     answerp.append(answerInput);
                     answerp.append(answer);
@@ -68,8 +68,8 @@
                 let punctaj=0;
                 form = $("#chestionar").serializeArray();
                 form.forEach(elem => {
-                    id=elem.name.substr(elem.name.length-1);
-                    if(chestionarData[id] && chestionarData[id].corect == elem.value){
+                    // id=elem.name.substr(elem.name.length-1);
+                    if(chestionarData[elem.name] && chestionarData[elem.name].corect == elem.value){
                         punctaj++;
                     }
                 })
@@ -94,7 +94,7 @@
             }
         })
 });
-    const startingMinutes=1;
+    const startingMinutes=100;
     let time=startingMinutes * 60;
     const timer = document.getElementById("timer");
     let interval=setInterval(updateCountdown, 1000);
