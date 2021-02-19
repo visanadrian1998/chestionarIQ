@@ -1,10 +1,184 @@
 [
         {
+            "id":0,
             "question":"1. Care dintre cele 5 variante de raspuns de mai jos reprezinta cea mai buna comparatie? LIVED este fata de DEVIL ceea ce 6323 este pentru:",
-            "answers":[2336,6232,3236,3326,6332]
+            "answers":[2336,6232,3236,3326,6332],
+            "corect":3236,
+            "imageQuestion":false
         },
         {
+            "id":1,
             "question":"2. Care dintre cele 5 cuvinte nu se aseamana cu celelalte 4?",
-            "answers":["Cal","Cangur","Vaca","Caprioara","Magar"]
+            "answers":["Cal","Cangur","Vaca","Caprioara","Magar"],
+            "corect":"Cangur",
+            "imageQuestion":false
+        },
+        {
+            "id":2,
+            "question":"3. Ce numar ar trebui sa urmeze in seria: 144 121 100 81 64 ...?",
+            "answers":[17,19,36,49,50],
+            "corect":49,
+            "imageQuestion":false
+        },
+        {
+            "id":3,
+            "question":"4. Chiar si cel mai ........ trandafir are tepi.",
+            "answers":["Urat","Ofilit","Inaccesibil","Daunator","Gingas"],
+            "corect":"Gingas",
+            "imageQuestion":false
+        },
+        {
+            "id":4,
+            "question":"5. MANA este pentru Manusa ceea ce CAP este pentru ......",
+            "answers":["Par","Palarie","Gat","Cercel","Agrafa"],
+            "corect":"Palarie",
+            "imageQuestion":false
+        },
+        {
+            "id":5,
+            "question":"C:/Users/avisan/source/repos/chestionarIQ/imagini/IQ/6.png",
+            "answers":["Par","Palarie","Gat","Cercel","Agrafa"],
+            "corect":"Palarie",
+            "imageQuestion":true
+        },
+        {
+            "id":6,
+            "question":"7. Alegeti cuvantul potrivit pentru rezolvarea rationamentului: FRATELE ESTE PENTRU SORA, CA SI NEPOTUL PENTRU.......",
+            "answers":["Mama","Tata","Manusa","Unchi","Nepoata"],
+            "corect":"Nepoata",
+            "imageQuestion":false
+        },
+        {
+            "id":7,
+            "question":"8. Un argument eronat este un argument",
+            "answers":["Deranjant","Valid","Fals","Necesar"],
+            "corect":"Fals",
+            "imageQuestion":false
+        },
+        {
+            "id":8,
+            "question":"9. Daca rearanjati literele 'ALNGAI' obtineti un nume de:",
+            "answers":["Ocean","Tara","Stat","Oras","Animal"],
+            "corect":"Tara",
+            "imageQuestion":false
+        },
+        {
+            "id":9,
+            "question":"10. NASA a primit 3 mesaje intr-o limba necunoscuta de la o planeta indepartata.Oamenii de stiinta au studiat mesajele si au descifrat urmatoarele: ELROS ALDARION ELENDIL inseamna EXPLOZIE PERICULOASA DE RACHETE;EDAIN MINATUR ELROS inseamna FOC PERICULOS PE NAVA COSMICA. ALDARION GIMILZOR GONDOL inseamna EXPLOZIE FATALA DE GAZ. Care este semnificatia cuvantului ELENDIL?",
+            "answers":["Periculos","Explozie","Racheta","Gaz","Nimic"],
+            "corect":"Racheta",
+            "imageQuestion":false
+        },
+        {
+            "id":10,
+            "question":"11. Daca cativa Wicks sunt Slicks, si cativa Slicks sunt Snicks, atunci cativa Wicks sunt in mod sigur Snicks. Aceasta afirmatie este:",
+            "answers":["Adevarata","Falsa","Nu se stie"],
+            "corect":"Falsa",
+            "imageQuestion":false
+        },
+        {
+            "id":11,
+            "question":"12. Ana este mai inalta ca Iulia, iar Maria este mai scunda decat Ana.Care dintre urmatoarele afirmatii este adevarata?",
+            "answers":["Maria este mai inalta decat Iulia","Maria este mai scunda decat Iulia","Maria este la fel de inalta ca Iulia","Nu se poate spune"],
+            "corect":"Nu se poate spune",
+            "imageQuestion":false
+        },
+        {
+            "id":12,
+            "question":"13. Un baiat are 4 ani iar sora lui este de 3 ori mai mare ca el.Cati ani va avea sora lui cand baiatul va avea 12 ani?",
+            "answers":[16,20,24,28,32],
+            "corect":20,
+            "imageQuestion":false
+        },
+        {
+            "id":13,
+            "question":"14. Sa presupunem ca urmatoarele doua afirmatii sunt adevarate.Toti barbatii cu par saten sunt violenti.Cristi este saten.Afirmatia 'Cristi este violent' este:",
+            "answers":["Adevarata","Falsa","Nu se stie"],
+            "corect":"Adevarata",
+            "imageQuestion":false
+        },
+        {
+            "id":14,
+            "question":"15. Doua fete au prins 25 de broaste.Lisa a prins de 4 ori mai multe broaste decat a prins Ioana.Cate broaste a prins Ioana?",
+            "answers":[4,5,8,10,15],
+            "corect":5,
+            "imageQuestion":false
+        },
+        {
+            "id":15,
+            "question":"16. Incapabil este opusul lui:",
+            "answers":["Sanatos","Profund","Inzestrat","Trist","Fericit"],
+            "corect":"Inzestrat",
+            "imageQuestion":false
+        },
+        {
+            "id":16,
+            "question":"17. O masina a parcurs 28km in 30 minute.Cu cati km/h mergea?",
+            "answers":[28,36,56,58,62],
+            "corect":56,
+            "imageQuestion":false
+        },
+        {
+            "id":17,
+            "question":"18. Daca toti Zip sunt Zoodles, si toti Zoodels sunt Zonkers, atunci toti Zip sunt in mod cert Zonkers.Aceasta propozitie este:",
+            "answers":["Adevarata","Falsa","Nu se stie"],
+            "corect":"Adevarata",
+            "imageQuestion":false
+        },
+        {
+            "id":18,
+            "question":"19. Simona este simultan al cincizecilea elev din clasa in ordinea descrescatoare a mediilor (de la cel mai bun la cel mai slab) si al cincizecilea elev din clasa in ordinea crescatoare a mediilor (de la cel mai slab la cel mai bun).Cati elevi are clasa?",
+            "answers":[50,75,99,100,101],
+            "corect":99,
+            "imageQuestion":false
+        },
+        {
+            "id":19,
+            "question":"20. Doi bicilisti parcurg o cursa, de la punctul X pana la punctul Y si inapoi. Mihnea merge cu o viteza de 30km pe ora pana la punctul Y si 10 km pe ora inapoi pana la punctul X. Andrei merge cu 20km pe ora in ambele sensuri. Care dintre Mihnea si Andrei va ajunge primul la linia de sosire?",
+            "answers":["Mihnea","Andrei","Ajung in acelasi timp", "Nu se poate spune"],
+            "corect":"Ajung in acelasi timp",
+            "imageQuestion":false
+        },
+        {
+            "id":20,
+            "question":"21. 'Purul si simplul adevar' este arareori pur si niciodata.....",
+            "answers":["Complet","Precis","Complex","Simplu","Intelept"],
+            "corect":"Simplu",
+            "imageQuestion":false
+        },
+        {
+            "id":21,
+            "question":"22. Ce numar urmeaza in seria:64,16,4,1,1/4,...?",
+            "answers":["1/16","1/12","1/8","1/2","1"],
+            "corect":"1/16",
+            "imageQuestion":false
+        },
+        {
+            "id":22,
+            "question":"23. Ce numar reprezinta jumatate dintr-un sfert dintr-o zecime din 800?",
+            "answers":[2,5,8,10,40],
+            "corect":10,
+            "imageQuestion":false
+        },
+        {
+            "id":23,
+            "question":"24. Doua masini pornesc din acelasi punct si merg in sensuri opuse pe o autostrada dreapta. Fiecare masina parcurge astfel 6km, apoi coteste spre stanga(curba de 90 de grade) si mai parcurge in linie dreapta inca 8km. Ce distanta exista intre cele 2 masini in acest moment?",
+            "answers":["2km","11km","14km","20km","26km"],
+            "corect":"20km",
+            "imageQuestion":false
+        },
+        {
+            "id":24,
+            "question":"25. Care dintre cele cinci obiecte de mai jos se potriveste cel mai putin cu celelalte patru?",
+            "answers":["Pruna","Strugure","Caisa","Piersica","Cireasa"],
+            "corect":"Strugure",
+            "imageQuestion":false
+        },
+        {
+            "id":25,
+            "question":"26. Care este cuvantul care completeaza cel mai bine analogia urmatoare? Apa este pentru pahar asa cum scrisoarea este pentru....?",
+            "answers":["Mail","Timbru","Stilou","Plic","Carte"],
+            "corect":"Plic",
+            "imageQuestion":false
         }
 ]

@@ -139,6 +139,7 @@ app.post('/postRezultate', (req, res) => {
                 if(obj.rezultate[i].token == req.body.token){
                         gasitToken=true;
                         obj.rezultate[i].form=req.body.form;
+                        obj.rezultate[i].punctaj=req.body.punctaj;
                         json = JSON.stringify(obj);
                         fs.writeFile('rezultate.json', json, function(error){
                             if(error){
@@ -149,8 +150,8 @@ app.post('/postRezultate', (req, res) => {
                     }
             }
             if(gasitToken==false){
-                if(req.body.token && req.body.form){
-                obj.rezultate.push({token:req.body.token,form:req.body.form});
+                if(req.body.token && req.body.form && req.body.punctaj){
+                obj.rezultate.push({token:req.body.token,punctaj:req.body.punctaj,form:req.body.form});
                 json = JSON.stringify(obj);
                         fs.writeFile('rezultate.json', json, function(error){
                             if(error){

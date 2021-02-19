@@ -11,6 +11,9 @@
         top:0;
         right:0;
     }
+    .intrebare{
+        padding-right:200px;
+    }
 </style>
 <body>
     <div class="timerContainer">
@@ -38,14 +41,22 @@
             let chestionarData=res;
             for(let i = 0; i < chestionarData.length;i++){
                 const div = document.createElement("div");
-                const questionp=document.createElement("p").innerHTML=chestionarData[i].question;
+                div.className="intrebare";
+                let questionp;
+                if(chestionarData[i].imageQuestion == false){
+                    questionp=document.createElement("p").innerHTML=chestionarData[i].question;
+                }else{
+                    questionp=document.createElement("IMG");
+                    questionp.src=chestionarData[i].question;
+                    questionp.alt="Intrebare";
+                }
                 div.append(questionp);
                 chestionarData[i].answers.forEach(answer => {
                     const answerp = document.createElement("p");
                     const answerInput = document.createElement("input");
                     answerInput.setAttribute("type","radio");
                     answerInput.className="input";
-                    answerInput.setAttribute("name","question"+i);
+                    answerInput.setAttribute("name","question"+chestionarData[i].id);
                     answerInput.value=answer;
                     answerp.append(answerInput);
                     answerp.append(answer);
@@ -54,7 +65,28 @@
                 $("#submitButton").before(div);
             }
             $(".input").change(function() {
-                calculeazaPunctaj();
+                let punctaj=0;
+                form = $("#chestionar").serializeArray();
+                form.forEach(elem => {
+                    id=elem.name.substr(elem.name.length-1);
+                    if(chestionarData[id] && chestionarData[id].corect == elem.value){
+                        punctaj++;
+                    }
+                })
+                let rezultat= {};
+                rezultat.token=window.location.href.split("/")[4];
+                rezultat.punctaj=punctaj;
+                rezultat.form = form;
+                $.ajax("/postRezultate",{
+                method: 'POST',
+                data:rezultat,
+                success: function() {
+                console.log("trimis");
+                },
+                error: function(){
+                console.log("failure");
+                }
+            })
             })
             },
             error: function(res){
@@ -76,23 +108,6 @@
             clearInterval(interval);
             reincarcaPagina();
          }
-    }
-    
-    
-    function calculeazaPunctaj() {
-        let rezultat= {};
-        rezultat.token=window.location.href.split("/")[4];
-        rezultat.form = $("#chestionar").serializeArray();
-        $.ajax("/postRezultate",{
-            method: 'POST',
-            data:rezultat,
-            success: function() {
-            console.log("trimis");
-            },
-            error: function(){
-                console.log("failure");
-            }
-        })
     }
 
     function reincarcaPagina() {
