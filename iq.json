@@ -337,7 +337,7 @@
         },
         {
             "id":42,
-            "question":"43. Tom si Harry au prins o duzina de pesti. Harry a prins de doua ori mai multi ca Tom.Cati peste a prins Tom?",
+            "question":"43. Tom si Harry au prins o duzina de pesti. Harry a prins de doua ori mai multi ca Tom.Cati pesti a prins Tom?",
             "answers":[2,3,4,6,8],
             "corect":4,
             "imageQuestion":false,
