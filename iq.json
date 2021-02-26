@@ -4,181 +4,463 @@
             "question":"1. Care dintre cele 5 variante de raspuns de mai jos reprezinta cea mai buna comparatie? LIVED este fata de DEVIL ceea ce 6323 este pentru:",
             "answers":[2336,6232,3236,3326,6332],
             "corect":3236,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":1,
             "question":"2. Care dintre cele 5 cuvinte nu se aseamana cu celelalte 4?",
             "answers":["Cal","Cangur","Vaca","Caprioara","Magar"],
             "corect":"Cangur",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":2,
             "question":"3. Ce numar ar trebui sa urmeze in seria: 144 121 100 81 64 ...?",
             "answers":[17,19,36,49,50],
             "corect":49,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":3,
             "question":"4. Chiar si cel mai ........ trandafir are tepi.",
             "answers":["Urat","Ofilit","Inaccesibil","Daunator","Gingas"],
             "corect":"Gingas",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":4,
             "question":"5. MANA este pentru Manusa ceea ce CAP este pentru ......",
             "answers":["Par","Palarie","Gat","Cercel","Agrafa"],
             "corect":"Palarie",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":5,
-            "question":"C:/Users/avisan/source/repos/chestionarIQ/imagini/IQ/6.png",
-            "answers":["Par","Palarie","Gat","Cercel","Agrafa"],
-            "corect":"Palarie",
-            "imageQuestion":true
+            "question":"/imaginiIQ/6/intrebare6.png",
+            "answers":["/imaginiIQ/6/rasp1.png","/imaginiIQ/6/rasp2.png","/imaginiIQ/6/rasp3.png","/imaginiIQ/6/rasp4.png","/imaginiIQ/6/rasp5.png"],
+            "corect":"/imaginiIQ/6/rasp4.png",
+            "imageQuestion":true,
+            "imageAnswers":true
         },
         {
             "id":6,
             "question":"7. Alegeti cuvantul potrivit pentru rezolvarea rationamentului: FRATELE ESTE PENTRU SORA, CA SI NEPOTUL PENTRU.......",
             "answers":["Mama","Tata","Manusa","Unchi","Nepoata"],
             "corect":"Nepoata",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":7,
             "question":"8. Un argument eronat este un argument",
             "answers":["Deranjant","Valid","Fals","Necesar"],
             "corect":"Fals",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":8,
             "question":"9. Daca rearanjati literele 'ALNGAI' obtineti un nume de:",
             "answers":["Ocean","Tara","Stat","Oras","Animal"],
             "corect":"Tara",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":9,
             "question":"10. NASA a primit 3 mesaje intr-o limba necunoscuta de la o planeta indepartata.Oamenii de stiinta au studiat mesajele si au descifrat urmatoarele: ELROS ALDARION ELENDIL inseamna EXPLOZIE PERICULOASA DE RACHETE;EDAIN MINATUR ELROS inseamna FOC PERICULOS PE NAVA COSMICA. ALDARION GIMILZOR GONDOL inseamna EXPLOZIE FATALA DE GAZ. Care este semnificatia cuvantului ELENDIL?",
             "answers":["Periculos","Explozie","Racheta","Gaz","Nimic"],
             "corect":"Racheta",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":10,
             "question":"11. Daca cativa Wicks sunt Slicks, si cativa Slicks sunt Snicks, atunci cativa Wicks sunt in mod sigur Snicks. Aceasta afirmatie este:",
             "answers":["Adevarata","Falsa","Nu se stie"],
             "corect":"Falsa",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":11,
             "question":"12. Ana este mai inalta ca Iulia, iar Maria este mai scunda decat Ana.Care dintre urmatoarele afirmatii este adevarata?",
             "answers":["Maria este mai inalta decat Iulia","Maria este mai scunda decat Iulia","Maria este la fel de inalta ca Iulia","Nu se poate spune"],
             "corect":"Nu se poate spune",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":12,
             "question":"13. Un baiat are 4 ani iar sora lui este de 3 ori mai mare ca el.Cati ani va avea sora lui cand baiatul va avea 12 ani?",
             "answers":[16,20,24,28,32],
             "corect":20,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":13,
             "question":"14. Sa presupunem ca urmatoarele doua afirmatii sunt adevarate.Toti barbatii cu par saten sunt violenti.Cristi este saten.Afirmatia 'Cristi este violent' este:",
             "answers":["Adevarata","Falsa","Nu se stie"],
             "corect":"Adevarata",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":14,
             "question":"15. Doua fete au prins 25 de broaste.Lisa a prins de 4 ori mai multe broaste decat a prins Ioana.Cate broaste a prins Ioana?",
             "answers":[4,5,8,10,15],
             "corect":5,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":15,
             "question":"16. Incapabil este opusul lui:",
             "answers":["Sanatos","Profund","Inzestrat","Trist","Fericit"],
             "corect":"Inzestrat",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":16,
             "question":"17. O masina a parcurs 28km in 30 minute.Cu cati km/h mergea?",
             "answers":[28,36,56,58,62],
             "corect":56,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":17,
             "question":"18. Daca toti Zip sunt Zoodles, si toti Zoodels sunt Zonkers, atunci toti Zip sunt in mod cert Zonkers.Aceasta propozitie este:",
             "answers":["Adevarata","Falsa","Nu se stie"],
             "corect":"Adevarata",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":18,
             "question":"19. Simona este simultan al cincizecilea elev din clasa in ordinea descrescatoare a mediilor (de la cel mai bun la cel mai slab) si al cincizecilea elev din clasa in ordinea crescatoare a mediilor (de la cel mai slab la cel mai bun).Cati elevi are clasa?",
             "answers":[50,75,99,100,101],
             "corect":99,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":19,
             "question":"20. Doi bicilisti parcurg o cursa, de la punctul X pana la punctul Y si inapoi. Mihnea merge cu o viteza de 30km pe ora pana la punctul Y si 10 km pe ora inapoi pana la punctul X. Andrei merge cu 20km pe ora in ambele sensuri. Care dintre Mihnea si Andrei va ajunge primul la linia de sosire?",
             "answers":["Mihnea","Andrei","Ajung in acelasi timp", "Nu se poate spune"],
             "corect":"Ajung in acelasi timp",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":20,
             "question":"21. 'Purul si simplul adevar' este arareori pur si niciodata.....",
             "answers":["Complet","Precis","Complex","Simplu","Intelept"],
             "corect":"Simplu",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":21,
             "question":"22. Ce numar urmeaza in seria:64,16,4,1,1/4,...?",
             "answers":["1/16","1/12","1/8","1/2","1"],
             "corect":"1/16",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":22,
             "question":"23. Ce numar reprezinta jumatate dintr-un sfert dintr-o zecime din 800?",
             "answers":[2,5,8,10,40],
             "corect":10,
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":23,
             "question":"24. Doua masini pornesc din acelasi punct si merg in sensuri opuse pe o autostrada dreapta. Fiecare masina parcurge astfel 6km, apoi coteste spre stanga(curba de 90 de grade) si mai parcurge in linie dreapta inca 8km. Ce distanta exista intre cele 2 masini in acest moment?",
             "answers":["2km","11km","14km","20km","26km"],
             "corect":"20km",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":24,
             "question":"25. Care dintre cele cinci obiecte de mai jos se potriveste cel mai putin cu celelalte patru?",
             "answers":["Pruna","Strugure","Caisa","Piersica","Cireasa"],
             "corect":"Strugure",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
         },
         {
             "id":25,
             "question":"26. Care este cuvantul care completeaza cel mai bine analogia urmatoare? Apa este pentru pahar asa cum scrisoarea este pentru....?",
             "answers":["Mail","Timbru","Stilou","Plic","Carte"],
             "corect":"Plic",
-            "imageQuestion":false
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":26,
+            "question":"27. Care din urmatoarele figuri se potriveste cel mai putin cu celelalte patru?",
+            "answers":["/imaginiIQ/27/rasp1.png","/imaginiIQ/27/rasp2.png","/imaginiIQ/27/rasp3.png","/imaginiIQ/27/rasp4.png","/imaginiIQ/27/rasp5.png"],
+            "corect":"/imaginiIQ/27/rasp2.png",
+            "imageQuestion":false,
+            "imageAnswers":true
+        },
+        {
+            "id":27,
+            "question":"/imaginiIQ/28/intrebare28.png",
+            "answers":["/imaginiIQ/28/rasp1.png","/imaginiIQ/28/rasp2.png","/imaginiIQ/28/rasp3.png","/imaginiIQ/28/rasp4.png","/imaginiIQ/28/rasp5.png"],
+            "corect":"/imaginiIQ/28/rasp2.png",
+            "imageQuestion":true,
+            "imageAnswers":true
+        },
+        {
+            "id":28,
+            "question":"/imaginiIQ/29/intrebare29.png",
+            "answers":["/imaginiIQ/29/rasp1.png","/imaginiIQ/29/rasp2.png","/imaginiIQ/29/rasp3.png","/imaginiIQ/29/rasp4.png"],
+            "corect":"/imaginiIQ/29/rasp2.png",
+            "imageQuestion":true,
+            "imageAnswers":true
+        },
+        {
+            "id":29,
+            "question":"/imaginiIQ/30/intrebare30.png",
+            "answers":["/imaginiIQ/30/rasp1.png","/imaginiIQ/30/rasp2.png","/imaginiIQ/30/rasp3.png","/imaginiIQ/30/rasp4.png"],
+            "corect":"/imaginiIQ/30/rasp4.png",
+            "imageQuestion":true,
+            "imageAnswers":true
+        },
+        {
+            "id":30,
+            "question":"/imaginiIQ/31/intrebare31.png",
+            "answers":["/imaginiIQ/31/rasp1.png","/imaginiIQ/31/rasp2.png","/imaginiIQ/31/rasp3.png","/imaginiIQ/31/rasp4.png","/imaginiIQ/31/rasp5.png"],
+            "corect":"/imaginiIQ/31/rasp1.png",
+            "imageQuestion":true,
+            "imageAnswers":true
+        },
+        {
+            "id":31,
+            "question":"32. A 47-a saptamana din an este in luna:",
+            "answers":["Decembrie","Ianuarie","Iunie","Noiembrie","Septembrie"],
+            "corect":"Noiembrie",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":32,
+            "question":"33. Care cuvant este diferit de celelalte?",
+            "answers":["Capricios","Comediant","Jucaus","Imprudent","Bizar"],
+            "corect":"Comediant",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":33,
+            "question":"34. Care dintre urmatoarele forme nu se potriveste cu celelalte?",
+            "answers":["/imaginiIQ/34/rasp1.png","/imaginiIQ/34/rasp2.png","/imaginiIQ/34/rasp3.png","/imaginiIQ/34/rasp4.png","/imaginiIQ/34/rasp5.png"],
+            "corect":"/imaginiIQ/34/rasp3.png",
+            "imageQuestion":false,
+            "imageAnswers":true
+        },
+        {
+            "id":34,
+            "question":"35. CIUDAT este opusul lui:",
+            "answers":["Familiar","Fericit","Incapatanat","Deosebit","Similar"],
+            "corect":"Familiar",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":35,
+            "question":"36. O portocala costa 12 centi. Cat va costa o duzina si jumatate de portocale?",
+            "answers":["$0.30","$1.44","$1.80","$2.06","$2.16"],
+            "corect":"$2.16",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":36,
+            "question":"37. EVIDENT este opusul lui",
+            "answers":["Aparent","Clar","Izbitor","Obscur","Vizibil"],
+            "corect":"Obscur",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":37,
+            "question":"38. Care dintre numerele urmatoare nu se potriveste cu regula din serie? 64 54 42 31 20",
+            "answers":[64,54,42,31,20],
+            "corect":54,
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":38,
+            "question":"39. Care dintre urmatoarele forme nu se potriveste cu celelalte?",
+            "answers":["/imaginiIQ/39/rasp1.png","/imaginiIQ/39/rasp2.png","/imaginiIQ/39/rasp3.png","/imaginiIQ/39/rasp4.png","/imaginiIQ/39/rasp5.png"],
+            "corect":"/imaginiIQ/39/rasp3.png",
+            "imageQuestion":false,
+            "imageAnswers":true
+        },
+        {
+            "id":39,
+            "question":"40. Daca cei mai multi Gannucks sunt Dorks si cei mai multi Gannucks sunt Xorgs, afirmatia potrivit careia unii Dorks sunt Xorgs este:",
+            "answers":["Falsa","Nu se poate preciza","Adevarata"],
+            "corect":"Adevarata",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":40,
+            "question":"41. Un vanzator de masini a cheltuit 20.000 euro pentru unele masini uzate.Le-a vandut apoi cu 27.500 euro, obtinand un profit de 1.500 de euro pentru fiecare masina.Cate masini a vandut?",
+            "answers":[11,15,4,5,7],
+            "corect":5,
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":41,
+            "question":"42. Care dintre urmatoarele cuvinte se relationeaza cu SUNET asa cum se relationeaza MANCAREA cu GURA?",
+            "answers":["Ureche","Muzica","Orchestra","Stomac","Gat"],
+            "corect":"Ureche",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":42,
+            "question":"43. Tom si Harry au prins o duzina de pesti. Harry a prins de doua ori mai multi ca Tom.Cati peste a prins Tom?",
+            "answers":[2,3,4,6,8],
+            "corect":4,
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":43,
+            "question":"44. Care dintre urmatoarele numere nu se potriveste in seria urmatoare? 13, 14, 15, 16, 18, 19, 21",
+            "answers":[13,14,15,16,18,19,21],
+            "corect":21,
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":44,
+            "question":"45. Care litera nu apartine seriei urmatoare? A F M P T U",
+            "answers":["A","F","M","P","T","U"],
+            "corect":"U",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":45,
+            "question":"46. Daca George l-a intalnit pe Gertrude si Gertrude l-a intalnit pe Ralph, atunci afirmatia potrivit careia George si Ralf nu s-au intalnit este: ",
+            "answers":["Falsa","Nu se poate spune","Adevarata"],
+            "corect":"Nu se poate spune",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":46,
+            "question":"47. Costul unui articol a fost redus cu 20%. Dupa reducerea de pret, cu ce procent trebuie sa fie ridicat pretul produsului ca sa ajunga la costul initial?",
+            "answers":["15%","20%","25%","30%","40%"],
+            "corect":"25%",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":47,
+            "question":"48. Care este opusul lui A RENEGA?",
+            "answers":["A omite","A dezamagi","A descuraja","A sustine","A repudia"],
+            "corect":"A sustine",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":48,
+            "question":"/imaginiIQ/49/intrebare49.png",
+            "answers":["/imaginiIQ/49/rasp1.png","/imaginiIQ/49/rasp2.png","/imaginiIQ/49/rasp3.png","/imaginiIQ/49/rasp4.png","/imaginiIQ/49/rasp5.png"],
+            "corect":"/imaginiIQ/49/rasp4.png",
+            "imageQuestion":true,
+            "imageAnswers":true
+        },
+        {
+            "id":49,
+            "question":"50. Care este opusul lui IMBACSIT?",
+            "answers":["Limpede","Investit","Rasplatit","Degustat","Consistent"],
+            "corect":"Limpede",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":50,
+            "question":"51. O punga de boabe de cafea costa 30 de dolari si din ea se pot servi 100 de cesti de cafea. Pierderile aferente sunt de 25%. Cu cat trebuie sa fie vanduta ceasca de cafea pentru a se obtine un profit de 150% pentru fiecare punga?",
+            "answers":["$0.75","$1.00","$1.25","$2.00"],
+            "corect":"$1.00",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":51,
+            "question":"52. Daca o pereche de pantaloni costa cu jumatate mai mult decat o camasa, iar suma totala cheltuita pe pantaloni si pe camasa e de 50 dolari, care este costul pantalonilor?",
+            "answers":["$20","$25","$30","$40"],
+            "corect":"$30",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":52,
+            "question":"53. Intr-o gradina zoologica se afla cativa lei si cativa struti. Ingrijitorul gradinii zoologice a numarat 15 capete si 50 de picioare.Cati lei exista in zoo?",
+            "answers":[10,11,12,13,14],
+            "corect":10,
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":53,
+            "question":"54. Intelepciunea inseamna sa stii ce trebuie sa faci;............. inseamna sa faci ceea ce stii ca trebuie.",
+            "answers":["Virtutea","Norocul","Fericirea","Echilibrul mintal","Nostalgia"],
+            "corect":"Virtutea",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":54,
+            "question":"55. Adevarata cunoastere inseamna sa intelegi ca stii...",
+            "answers":["Totul","Nimic","Adevarul","Starea vremii","Sensul vietii"],
+            "corect":"Nimic",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":55,
+            "question":"56. Trei parteneri se implica intr-un proiect. Veniturile lor insumate se ridica la 11.000$. Sam investeste de 2 ori mai mult ca Peter.Peter investeste cu 50% mai mult decat Charlie. Daca afacerea lor se destrama, cat trebuie sa primeasca Charlie inapoi?",
+            "answers":["$2000","$2500","$3666.66","$6000","0"],
+            "corect":"$2000",
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":56,
+            "question":"57. Un submarin merge cu 10 mile pe ora pe sub apa si cu 25 mile pe ora pe suprafata apei. In cate ore va parcurge o distanta de 350 mile daca merge de 2.5 ori mai mult pe suprafata apei?",
+            "answers":[10,15,20,35,65],
+            "corect":20,
+            "imageQuestion":false,
+            "imageAnswers":false
+        },
+        {
+            "id":57,
+            "question":"58. La sfarsitul unei petreceri 10 oameni isi strang mainile unii cu altii. Cate astfel de saluturi au loc in total?",
+            "answers":[100,20,45,50,90],
+            "corect":45,
+            "imageQuestion":false,
+            "imageAnswers":false
         }
 ]

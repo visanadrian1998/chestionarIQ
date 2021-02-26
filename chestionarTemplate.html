@@ -29,6 +29,7 @@
             <span>Email</span>
             <input type="text" class="input" name="email">
         </div>
+        <!-- <img src="/imaginiIQ/6.png" alt="imagine"/> -->
         <input type="button" id="submitButton" value="Finalizeaza test" onclick="reincarcaPagina()">
     </form>
 </body>
@@ -52,6 +53,7 @@
                 }
                 div.append(questionp);
                 chestionarData[i].answers.forEach(answer => {
+                    if(chestionarData[i].imageAnswers == false){
                     const answerp = document.createElement("p");
                     const answerInput = document.createElement("input");
                     answerInput.setAttribute("type","radio");
@@ -61,6 +63,21 @@
                     answerp.append(answerInput);
                     answerp.append(answer);
                     div.append(answerp);
+                    }
+                    else{
+                        const answerdiv = document.createElement("div");
+                        const answerInput = document.createElement("input");
+                        answerInput.setAttribute("type","radio");
+                        answerInput.className="input";
+                        answerInput.setAttribute("name",chestionarData[i].id);
+                        answerInput.value=answer;
+                        const answerImage=document.createElement("IMG");
+                        answerImage.src=answer;
+                        answerImage.alt="raspuns";
+                        answerdiv.append(answerInput);
+                        answerdiv.append(answerImage);
+                        div.append(answerdiv);
+                    }
                 })
                 $("#submitButton").before(div);
             }
@@ -68,7 +85,6 @@
                 let punctaj=0;
                 form = $("#chestionar").serializeArray();
                 form.forEach(elem => {
-                    // id=elem.name.substr(elem.name.length-1);
                     if(chestionarData[elem.name] && chestionarData[elem.name].corect == elem.value){
                         punctaj++;
                     }
