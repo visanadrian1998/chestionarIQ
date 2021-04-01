@@ -11,7 +11,7 @@ app.use(express.static('public'));
 
 app.get('/test/:link',function (req,res) {
     res.writeHead(200, {"Content-Type": "text/html",'Cache-Control': 'private, no-cache, no-store, must-revalidate' })
-    fs.readFile("client/validare.html", function(error,data) {
+    fs.readFile("client/html/validare.html", function(error,data) {
         if(error) {
             res.writeHead(404)
             res.write("Error: File Not Found")
@@ -45,7 +45,7 @@ app.get('/test/:link',function (req,res) {
 })
 app.get('/chestionar/:link', function (req, res) {
     res.writeHead(200, {"Content-Type": "text/html",'Cache-Control': 'private, no-cache, no-store, must-revalidate' })
-    fs.readFile("client/chestionarTemplate.html", function(error,data) {
+    fs.readFile("client/html/chestionarTemplate.html", function(error,data) {
         if(error) {
             res.writeHead(404)
             res.write("Error: File Not Found")
@@ -65,12 +65,6 @@ app.get('/chestionar/:link', function (req, res) {
                                 return;
                                 //daca nu, updatam fisierul de tokens cu noul token introdus
                             }else{
-                                json = JSON.stringify(obj);
-                                fs.writeFile('tokens.json', json, function(error){
-                                    if(error){
-                                        console.error(error);
-                                    }
-                                });
                                 //citim fisierul de rezultate si cautam tokenul folosit in prezent
                                 fs.readFile("rezultate.json",function(errorRezultateJSON,dataRezultateJSON){
                                     if(errorRezultateJSON){
@@ -127,7 +121,7 @@ app.get("/chestionarData", (req,res) => {
 
 app.get("/generare",function(req,res){
     res.writeHead(200, {"Content-Type": "text/html" })
-    fs.readFile("client/generare.html", function(error,data) {
+    fs.readFile("client/html/generare.html", function(error,data) {
         if(error) {
              res.writeHead(404)
              res.write("Error: File Not Found")
@@ -179,8 +173,10 @@ app.post('/postRezultate', (req, res) => {
                                 });
                             //daca nu, inseamna ca testul inca e in curs si updatam fisierul de rezultate cu noile raspunsuri date de user
                         }else{
+                            //TRIMITEM FORMUL CU RASPUNSURILE DE PANA ACUM CATRE CLIENT
                             req.body.form?obj.rezultate[i].form=req.body.form:"";
                             req.body.timeExpired?obj.rezultate[i].timeExpired=req.body.timeExpired:"";
+                            //CALCULAM PUNCTAJUL
                             fs.readFile('iq_rezultate.json',function readFileCallback(errRezultate,dataRezultate){
                                 if(errRezultate){
                                     console.log(errRezultate);
