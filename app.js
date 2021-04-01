@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static('public'));
+app.use(express.static('client'));
 
 app.get('/test/:link',function (req,res) {
     res.writeHead(200, {"Content-Type": "text/html",'Cache-Control': 'private, no-cache, no-store, must-revalidate' })
