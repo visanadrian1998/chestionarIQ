@@ -21,15 +21,6 @@
         <p id="timer"></p>
     </div>
     <form name="chestionar" id="chestionar" method="POST">
-        <!-- <div>
-            <span>Nume</span>
-            <input type="text" class="input" name="nume">
-            <span>Prenume</span>
-            <input type="text" class="input" name="prenume">
-            <span>Email</span>
-            <input type="text" class="input" name="email">
-        </div> -->
-        <!-- <img src="/imaginiIQ/6.png" alt="imagine"/> -->
         <input type="button" id="submitButton" value="Finalizeaza test" onclick="submitChestionar()">
     </form>
 </body>
@@ -40,7 +31,6 @@
             method: "GET",
             success: function(res) {
             let chestionarData=res;
-
             for(let i = 0; i < chestionarData.length;i++){
                 const div = document.createElement("div");
                 div.className="intrebare";
@@ -83,16 +73,9 @@
                 $("#submitButton").before(div);
             }
             $(".input").change(function() {
-                //let punctaj=0;
                 form = $("#chestionar").serializeArray();
-                // form.forEach(elem => {
-                //     if(chestionarData[elem.name] && chestionarData[elem.name].corect == elem.value){
-                //         punctaj++;
-                //     }
-                // })
                 let rezultat= {};
                 rezultat.token=window.location.href.split("/")[4];
-                //rezultat.punctaj=punctaj;
                 rezultat.form = form;
                 $.ajax("/postRezultate",{
                 method: 'POST',
@@ -105,6 +88,7 @@
                 }
             })
             })
+            if(chestionarData[0].form) umpleFormul(chestionarData[0].form);
             let time=Math.ceil(chestionarData[0].time);
             const timer = document.getElementById("timer");
             let interval=setInterval(updateCountdown, 1000);
@@ -122,7 +106,7 @@
                     data:rezultat,
                     success: function() {
                     clearInterval(interval);
-                    reincarcaPagina();
+                    location.reload();
                 },
                 error: function(){
                     console.log("failure");
@@ -136,36 +120,8 @@
             }
             
         })
-});
-    
-        // $.ajax("/chestionarStartingTime",{
-        //     method: "GET",
-        //     success: function(res) {
-        //     let timeStarting=res;
-        //     let time = timeStarting;
-        //     const timer = document.getElementById("timer");
-        //     let interval=setInterval(updateCountdown, 1000);
-        //     function updateCountdown() {
-        //         const minutes = Math.floor(time/60);
-        //         let seconds = time % 60;
-        //         seconds = seconds < 10 ? "0"+seconds:seconds;
-        //         timer.innerHTML = `${minutes}:${seconds}`;
-        //         time--;
-        //         if(time<0){
-        //         clearInterval(interval);
-        //         reincarcaPagina();
-        //         }
-        //     }
-        //     },
-        //     error: function(res){
-        //         console.log("failure",res);
-        //     }
-        // })
-    
+}); 
 
-    function reincarcaPagina() {
-        location.reload();
-    }
     function submitChestionar(){
         let rezultat={};
         rezultat.token=window.location.href.split("/")[4];
@@ -174,12 +130,21 @@
                 method: 'POST',
                 data:rezultat,
                 success: function() {
-                reincarcaPagina();
+                location.reload();
                 },
                 error: function(){
                 console.log("failure");
                 }
             })
+    }
+    function umpleFormul(data){
+        console.log(document.getElementsByName("0"));
+        for(element of data){
+            let optiuni = document.getElementsByName(element.name);
+            for(optiune of optiuni){
+                if (optiune.value == element.value) optiune.checked=true;
+            }
+        }
     }
 </script>
 </html>

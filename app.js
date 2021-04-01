@@ -5,13 +5,13 @@ const fs = require("fs")
 uuid = require("node-uuid")
 jsonfile = require("jsonfile")
 const bodyParser = require('body-parser');
-//const { clear } = require("console")
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static('public'));
+
 app.get('/test/:link',function (req,res) {
     res.writeHead(200, {"Content-Type": "text/html",'Cache-Control': 'private, no-cache, no-store, must-revalidate' })
-    fs.readFile("validare.html", function(error,data) {
+    fs.readFile("client/validare.html", function(error,data) {
         if(error) {
             res.writeHead(404)
             res.write("Error: File Not Found")
@@ -45,7 +45,7 @@ app.get('/test/:link',function (req,res) {
 })
 app.get('/chestionar/:link', function (req, res) {
     res.writeHead(200, {"Content-Type": "text/html",'Cache-Control': 'private, no-cache, no-store, must-revalidate' })
-    fs.readFile("chestionarTemplate.html", function(error,data) {
+    fs.readFile("client/chestionarTemplate.html", function(error,data) {
         if(error) {
             res.writeHead(404)
             res.write("Error: File Not Found")
@@ -86,7 +86,7 @@ app.get('/chestionar/:link', function (req, res) {
                                         }
                                         //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
                                         //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
-                                        objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+20000,timeExpired:false});
+                                        objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+50000,timeExpired:false});
                                         fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
                                             if(error){
                                                 console.error(error);
@@ -107,6 +107,7 @@ app.get('/chestionar/:link', function (req, res) {
 app.get("/chestionarData", (req,res) => {
     const token=req.headers.referer.split("/")[4];
     let timeLeft;
+    let formToSendToClient;
     fs.readFile("rezultate.json",function(errorRezultate,dataRezultate){
         if(errorRezultate){
             res.writeHead(500)
@@ -116,74 +117,15 @@ app.get("/chestionarData", (req,res) => {
             for(let i=0;i<objRez.rezultate.length;i++){
                 if(objRez.rezultate[i].token==token){
                     timeLeft=(objRez.rezultate[i].timeToFinish-Date.now())/1000;
+                    objRez.rezultate[i].form?formToSendToClient=objRez.rezultate[i].form:"";
                 }
             }
         }
-        readTokensFile(res,token,timeLeft);
+        readTokensFile(res,token,timeLeft,formToSendToClient);
     })
-    // fs.readFile("tokens.json", function(errorJSON,dataJSON){
-    //     if(errorJSON){
-    //         res.writeHead(500)
-    //         res.write("A aparut o problema")
-    //     }else{
-    //         obj = JSON.parse(dataJSON);
-    //         for(let i= 0;i<obj.tokens.length;i++){
-    //             if(obj.tokens[i].token == token){
-    //                 if(obj.tokens[i].tip == "IQ"){
-    //                     const chestionar=require("./iq.json");
-    //                     chestionar[0].time=timeLeft;
-    //                     res.json(chestionar);
-    //                     return;
-    //                 }else if(obj.tokens[i].tip == "Geografie"){
-    //                     const chestionar=require("./geografie.json");
-    //                     res.json(chestionar);
-    //                     return;
-    //                 }
-    //             }
-    //         }
-    //         res.end("Nu am gasit chestionarul aferent.")
-    //     }
-    // })
 })
-// app.get("/chestionarStartingTime", (req,res) => {
-//     const token=req.headers.referer.split("/")[4];
-//     fs.readFile("tokens.json", function(errorJSON,dataJSON){
-//         if(errorJSON){
-//             res.writeHead(500)
-//             res.write("A aparut o problema")
-//         }else{
-//             obj = JSON.parse(dataJSON);
-//             for(let i= 0;i<obj.tokens.length;i++){
-//                 if(obj.tokens[i].token == token){
-//                     timeLeft= obj.tokens[i].timeLeft;
-//                     let interval = setInterval(function(){
-//                         obj.tokens[i].timeLeft--;
-//                         json = JSON.stringify(obj);
-//                         fs.writeFile('tokens.json', json, function(error){
-//                             if(error){
-//                                 console.error(error);
-//                                 }
-//                         });
-//                         if(obj.tokens[i].timeLeft<=0){
-//                             // obj.tokens[i].used=true;
-//                             // fs.writeFile('tokens.json', JSON.stringify(obj), function(error){
-//                             //     if(error){
-//                             //         console.error(error);
-//                             //         }
-//                             // });
-//                             res.redirect("/finalChestionar.html");
-//                             clearInterval(interval); 
-//                             return;
-//                         }
-//                     },1000);
-//                     //res.end(JSON.stringify(obj.tokens[i].timeLeft));
-//                     return;
-//                 }
-//             }
-//         }
-//     })
-// })
-app.get("/generare",function(req,res){
+
+app.get("client/generare",function(req,res){
     res.writeHead(200, {"Content-Type": "text/html" })
     fs.readFile("generare.html", function(error,data) {
         if(error) {
@@ -258,12 +200,6 @@ app.post('/postRezultate', (req, res) => {
                                 }
                             })
                         }
-                        // json = JSON.stringify(obj);
-                        // fs.writeFile('rezultate.json', json, function(error){
-                        //     if(error){
-                        //         console.error(error);
-                        //     }
-                        // });
                         return;
                     }
             }
@@ -304,7 +240,7 @@ app.use(function (request, response) {
     response.statusCode = 404;
     response.end('Pagina nu a fost gasita!');
   })
-function readTokensFile(res,token,timeLeft){
+function readTokensFile(res,token,timeLeft,formToSendToClient){
     fs.readFile("tokens.json", function(errorJSON,dataJSON){
         if(errorJSON){
             res.writeHead(500)
@@ -316,6 +252,7 @@ function readTokensFile(res,token,timeLeft){
                     if(obj.tokens[i].tip == "IQ"){
                         const chestionar=require("./iq.json");
                         chestionar[0].time=timeLeft;
+                        chestionar[0].form=formToSendToClient;
                         res.json(chestionar);
                         return;
                     }else if(obj.tokens[i].tip == "Geografie"){
