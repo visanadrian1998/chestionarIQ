@@ -21,16 +21,16 @@
         <p id="timer"></p>
     </div>
     <form name="chestionar" id="chestionar" method="POST">
-        <div>
+        <!-- <div>
             <span>Nume</span>
             <input type="text" class="input" name="nume">
             <span>Prenume</span>
             <input type="text" class="input" name="prenume">
             <span>Email</span>
             <input type="text" class="input" name="email">
-        </div>
+        </div> -->
         <!-- <img src="/imaginiIQ/6.png" alt="imagine"/> -->
-        <input type="button" id="submitButton" value="Finalizeaza test" onclick="reincarcaPagina()">
+        <input type="button" id="submitButton" value="Finalizeaza test" onclick="submitChestionar()">
     </form>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,6 +40,7 @@
             method: "GET",
             success: function(res) {
             let chestionarData=res;
+
             for(let i = 0; i < chestionarData.length;i++){
                 const div = document.createElement("div");
                 div.className="intrebare";
@@ -82,16 +83,16 @@
                 $("#submitButton").before(div);
             }
             $(".input").change(function() {
-                let punctaj=0;
+                //let punctaj=0;
                 form = $("#chestionar").serializeArray();
-                form.forEach(elem => {
-                    if(chestionarData[elem.name] && chestionarData[elem.name].corect == elem.value){
-                        punctaj++;
-                    }
-                })
+                // form.forEach(elem => {
+                //     if(chestionarData[elem.name] && chestionarData[elem.name].corect == elem.value){
+                //         punctaj++;
+                //     }
+                // })
                 let rezultat= {};
                 rezultat.token=window.location.href.split("/")[4];
-                rezultat.punctaj=punctaj;
+                //rezultat.punctaj=punctaj;
                 rezultat.form = form;
                 $.ajax("/postRezultate",{
                 method: 'POST',
@@ -104,30 +105,81 @@
                 }
             })
             })
+            let time=Math.ceil(chestionarData[0].time);
+            const timer = document.getElementById("timer");
+            let interval=setInterval(updateCountdown, 1000);
+            function updateCountdown() {
+                const minutes = Math.floor(time/60);
+                let seconds = time % 60;
+                seconds = seconds < 10 ? "0"+seconds:seconds;
+                timer.innerHTML = `${minutes}:${seconds}`;
+                time--;
+                if(time<0){
+                 let rezultat={};
+                 rezultat.token=window.location.href.split("/")[4];
+                 $.ajax("/postRezultate",{
+                    method: 'POST',
+                    data:rezultat,
+                    success: function() {
+                    clearInterval(interval);
+                    reincarcaPagina();
+                },
+                error: function(){
+                    console.log("failure");
+                }
+            })
+         }
+    }
             },
             error: function(res){
                 console.log("failure",res);
             }
+            
         })
 });
-    const startingMinutes=30;
-    let time=startingMinutes * 60;
-    const timer = document.getElementById("timer");
-    let interval=setInterval(updateCountdown, 1000);
-    function updateCountdown() {
-        const minutes = Math.floor(time/60);
-        let seconds = time % 60;
-        seconds = seconds < 10 ? "0"+seconds:seconds;
-        timer.innerHTML = `${minutes}:${seconds}`;
-        time--;
-        if(time<0){
-            clearInterval(interval);
-            reincarcaPagina();
-         }
-    }
+    
+        // $.ajax("/chestionarStartingTime",{
+        //     method: "GET",
+        //     success: function(res) {
+        //     let timeStarting=res;
+        //     let time = timeStarting;
+        //     const timer = document.getElementById("timer");
+        //     let interval=setInterval(updateCountdown, 1000);
+        //     function updateCountdown() {
+        //         const minutes = Math.floor(time/60);
+        //         let seconds = time % 60;
+        //         seconds = seconds < 10 ? "0"+seconds:seconds;
+        //         timer.innerHTML = `${minutes}:${seconds}`;
+        //         time--;
+        //         if(time<0){
+        //         clearInterval(interval);
+        //         reincarcaPagina();
+        //         }
+        //     }
+        //     },
+        //     error: function(res){
+        //         console.log("failure",res);
+        //     }
+        // })
+    
 
     function reincarcaPagina() {
         location.reload();
+    }
+    function submitChestionar(){
+        let rezultat={};
+        rezultat.token=window.location.href.split("/")[4];
+        rezultat.timeExpired=true;
+        $.ajax("/postRezultate",{
+                method: 'POST',
+                data:rezultat,
+                success: function() {
+                reincarcaPagina();
+                },
+                error: function(){
+                console.log("failure");
+                }
+            })
     }
 </script>
 </html>
