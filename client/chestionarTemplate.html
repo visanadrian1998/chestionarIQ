@@ -77,43 +77,10 @@
                 let rezultat= {};
                 rezultat.token=window.location.href.split("/")[4];
                 rezultat.form = form;
-                $.ajax("/postRezultate",{
-                method: 'POST',
-                data:rezultat,
-                success: function() {
-                console.log("trimis");
-                },
-                error: function(){
-                console.log("failure");
-                }
-            })
+                posteazaRezultate(rezultat,false,null);
             })
             if(chestionarData[0].form) umpleFormul(chestionarData[0].form);
-            let time=Math.ceil(chestionarData[0].time);
-            const timer = document.getElementById("timer");
-            let interval=setInterval(updateCountdown, 1000);
-            function updateCountdown() {
-                const minutes = Math.floor(time/60);
-                let seconds = time % 60;
-                seconds = seconds < 10 ? "0"+seconds:seconds;
-                timer.innerHTML = `${minutes}:${seconds}`;
-                time--;
-                if(time<0){
-                 let rezultat={};
-                 rezultat.token=window.location.href.split("/")[4];
-                 $.ajax("/postRezultate",{
-                    method: 'POST',
-                    data:rezultat,
-                    success: function() {
-                    clearInterval(interval);
-                    location.reload();
-                },
-                error: function(){
-                    console.log("failure");
-                }
-            })
-         }
-    }
+            faTimer(chestionarData);
             },
             error: function(res){
                 console.log("failure",res);
@@ -126,24 +93,44 @@
         let rezultat={};
         rezultat.token=window.location.href.split("/")[4];
         rezultat.timeExpired=true;
+        posteazaRezultate(rezultat,true,null);
+    }
+    function umpleFormul(data){
+        for(element of data){
+            let optiuni = document.getElementsByName(element.name);
+            for(optiune of optiuni){
+                if (optiune.value == element.value) optiune.checked=true;
+            }
+        }
+    }
+    function posteazaRezultate(rezultat,refreshPagina,interval){
         $.ajax("/postRezultate",{
                 method: 'POST',
                 data:rezultat,
                 success: function() {
-                location.reload();
+                if(interval) clearInterval(interval);
+                if(refreshPagina) location.reload();
                 },
                 error: function(){
                 console.log("failure");
                 }
             })
     }
-    function umpleFormul(data){
-        console.log(document.getElementsByName("0"));
-        for(element of data){
-            let optiuni = document.getElementsByName(element.name);
-            for(optiune of optiuni){
-                if (optiune.value == element.value) optiune.checked=true;
-            }
+    function faTimer(chestionarData){
+        let time=Math.ceil(chestionarData[0].time);
+        const timer = document.getElementById("timer");
+        let interval=setInterval(updateCountdown, 1000);
+        function updateCountdown() {
+                const minutes = Math.floor(time/60);
+                let seconds = time % 60;
+                seconds = seconds < 10 ? "0"+seconds:seconds;
+                timer.innerHTML = `${minutes}:${seconds}`;
+                time--;
+                if(time<0){
+                 let rezultat={};
+                 rezultat.token=window.location.href.split("/")[4];
+                 posteazaRezultate(rezultat,true,interval);
+                }
         }
     }
 </script>

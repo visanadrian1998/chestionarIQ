@@ -125,9 +125,9 @@ app.get("/chestionarData", (req,res) => {
     })
 })
 
-app.get("client/generare",function(req,res){
+app.get("/generare",function(req,res){
     res.writeHead(200, {"Content-Type": "text/html" })
-    fs.readFile("generare.html", function(error,data) {
+    fs.readFile("client/generare.html", function(error,data) {
         if(error) {
              res.writeHead(404)
              res.write("Error: File Not Found")
