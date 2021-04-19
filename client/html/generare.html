@@ -3,56 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src *">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../generareCod.js"></script>
+    <link rel="stylesheet" href="../css/DefaultStyle.css">
 </head>
-<style>
-    div{
-        position:absolute;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-50%);
-    }
-    input{
-        width:800px;
-    }
-</style>
 <body>
-    <div>
+    <div id="GenerareContainer">
         <label for="tipTest">Ce test vrei sa generezi?</label>
         <select name="tipTest" id="tipTest">
             <option value="IQ">IQ</option>
             <option value="Geografie">Geografie</option>
             <option value="ALTCEVA">ALTCEVA</option>
         </select>
-        <input type="button" value="Genereaza!" onclick="return genereaza()">
-        <input class="linkGenerat" type="text" value="">
+        <input class="GenerareInput" id="GenereazaButton" type="button" value="Genereaza!">
+        <input class="linkGenerat GenerareInput" type="text" value="">
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    function uuidv4() {
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
-    }
-    function genereaza(){
-        let randomID=uuidv4();
-        let testType=$("#tipTest").val();
-        let link=`http://localhost:3000/test/${randomID}`;
-        let linkObj={};
-        linkObj.token=randomID;
-        linkObj.used=false;
-        linkObj.tip=testType;
-        $(".linkGenerat").val(link);
-        $.ajax("/genereazaLink",{
-            method: 'POST',
-            data:linkObj,
-            success: function() {
-            console.log("link Generat.");
-            },
-            error: function(){
-                console.log("failure");
-            }
-        })
-    }
-</script>
 </html>

@@ -1,0 +1,17 @@
+#GenerareContainer{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.GenerareInput{
+    width:800px;
+}
+.timerContainer{
+    position:fixed;
+    top:0;
+    right:0;
+}
+.intrebare{
+    padding-right:200px;
+}

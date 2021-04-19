@@ -1,10 +1,18 @@
 const http = require("http")
 const express = require("express")
+const helmet = require("helmet");
 const app = express()
 const fs = require("fs")
 uuid = require("node-uuid")
 jsonfile = require("jsonfile")
 const bodyParser = require('body-parser');
+
+app.use(helmet.contentSecurityPolicy({
+    directives:{
+      defaultSrc:["'self'"],
+      scriptSrc:["'self'",'code.jquery.com',,'ajax.googleapis.com'],
+      styleSrc:["'self'"],
+      fontSrc:["'self'"]}}));
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static('public'));

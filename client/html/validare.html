@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../validareCod.js"></script>
 </head>
 <body>
     <h3>Tokenul este valid.Puteti incepe testul.Durata este de 30 de minute.</h3>
-    <input type="button" value="Start test" onclick="return start()">
-</body>
-<script>
-    function start(){
-        let url=window.location.href;
-        url=url.replace(url.split('/')[3], 'chestionar');
-        window.location.href=url;
-    }
-</script>
+    <input type="button" id="startTest" value="Start test">
+</body>    
 </html>
