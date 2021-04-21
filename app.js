@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 app.use(helmet.contentSecurityPolicy({
     directives:{
       defaultSrc:["'self'"],
-      scriptSrc:["'self'",'code.jquery.com',,'ajax.googleapis.com'],
+      scriptSrc:["'self'",'nonce','code.jquery.com','ajax.googleapis.com'],
       styleSrc:["'self'"],
       fontSrc:["'self'"]}}));
 
