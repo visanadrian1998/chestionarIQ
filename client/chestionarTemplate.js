@@ -59,7 +59,7 @@ $(document).ready(function() {
         }
         
     })
-}); 
+    $("#submitButton").on('click',submitChestionar); 
 
 function submitChestionar(){
     let rezultat={};
@@ -105,3 +105,4 @@ function faTimer(chestionarData){
             }
     }
 }
+});
