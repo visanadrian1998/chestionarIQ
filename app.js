@@ -62,30 +62,7 @@ app.get('/test/:link',function (req,res) {
             res.writeHead(404)
             res.write("Error: File Not Found")
         }else{
-            fs.readFile("tokens.json", function(errorJSON,dataJSON){
-                if(errorJSON){
-                    res.writeHead(500)
-                    res.write("A aparut o problema")
-                }else{
-                    obj = JSON.parse(dataJSON);
-                    //parcurgem toti tokenii si il cautam pe cel curent(din link)
-                    for(let i= 0;i<obj.tokens.length;i++){
-                        if(obj.tokens[i].token == req.params.link){
-                            //cand gasim tokenul, verificam daca are "used=true".Daca da, inseamna ca deja a fost folosit, si nu il mai lasam sa intre in test
-                            if(obj.tokens[i].used == true){
-                                res.end("Tokenul a fost deja utilizat.")
-                                return;
-                            //daca nu, inseamna ca este un token nefolosit, si il lasam sa intre in test.
-                            }else{
-                                res.end(data);
-                                return;
-                            }
-                        }
-                    }
-                    res.end("Tokenul nu este valid");
-                }
-            })
-
+            testareToken(req,res,data,false);
         }
     })
 })
@@ -96,51 +73,7 @@ app.get('/chestionar/:link', function (req, res) {
             res.writeHead(404)
             res.write("Error: File Not Found")
         }else{
-            fs.readFile("tokens.json", function(errorJSON,dataJSON){
-                if(errorJSON){
-                    res.writeHead(500)
-                    res.write("A aparut o problema")
-                }else{
-                    obj = JSON.parse(dataJSON);
-                    //parcurgem tokenii si il cautam pe cel curent(din link)
-                    for(let i= 0;i<obj.tokens.length;i++){
-                        if(obj.tokens[i].token == req.params.link){
-                            //verificam daca tokenul este "used=true".Daca da, nu il lasam sa intre in test
-                            if(obj.tokens[i].used == true){
-                                res.end("Ati rezolvat chestionarul.Va multumim pentru timpul acordat.")
-                                return;
-                                //daca nu, updatam fisierul de tokens cu noul token introdus
-                            }else{
-                                //citim fisierul de rezultate si cautam tokenul folosit in prezent
-                                fs.readFile("rezultate.json",function(errorRezultateJSON,dataRezultateJSON){
-                                    if(errorRezultateJSON){
-                                        res.writeHead(500)
-                                        res.write("A aparut o problema")
-                                    }else{
-                                        objRezultate=JSON.parse(dataRezultateJSON);
-                                        for(let i=0;i<objRezultate.rezultate.length;i++){
-                                        //daca il gasim, inseamna ca testul deja a fost inceput de utilizator si nu facem nimic
-                                            if(objRezultate.rezultate[i].token == req.params.link){
-                                                return;
-                                            }
-                                        }
-                                        //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
-                                        //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
-                                        objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+50000,timeExpired:false});
-                                        fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
-                                            if(error){
-                                                console.error(error);
-                                            }
-                                        })                                    }
-                                })
-                                res.end(data);
-                                return;
-                            }
-                        }
-                    }
-                     res.end("Tokenul nu este valid.");
-                }
-            })
+            testareToken(req,res,data,true);
         }
     })
   });
@@ -305,6 +238,54 @@ function readTokensFile(res,token,timeLeft,formToSendToClient){
                 }
             }
             res.end("Nu am gasit chestionarul aferent.")
+        }
+    })
+}
+function testareToken(req,res,data, testareAvansata){
+    fs.readFile("tokens.json", function(errorJSON,dataJSON){
+        if(errorJSON){
+            res.writeHead(500)
+            res.write("A aparut o problema")
+        }else{
+            obj = JSON.parse(dataJSON);
+            //parcurgem toti tokenii si il cautam pe cel curent(din link)
+            for(let i= 0;i<obj.tokens.length;i++){
+                if(obj.tokens[i].token == req.params.link){
+                    //cand gasim tokenul, verificam daca are "used=true".Daca da, inseamna ca deja a fost folosit, si nu il mai lasam sa intre in test
+                    if(obj.tokens[i].used == true){
+                        res.end(testareAvansata?"Ati rezolvat chestionarul.Va multumim pentru timpul acordat.":"Tokenul a fost deja utilizat.")
+                        return;
+                    //daca nu, inseamna ca este un token nefolosit, si il lasam sa intre in test.
+                    }else{
+                        if(testareAvansata){
+                            fs.readFile("rezultate.json",function(errorRezultateJSON,dataRezultateJSON){
+                                if(errorRezultateJSON){
+                                    res.writeHead(500)
+                                    res.write("A aparut o problema")
+                                }else{
+                                    objRezultate=JSON.parse(dataRezultateJSON);
+                                    for(let i=0;i<objRezultate.rezultate.length;i++){
+                                    //daca il gasim, inseamna ca testul deja a fost inceput de utilizator si nu facem nimic
+                                        if(objRezultate.rezultate[i].token == req.params.link){
+                                            return;
+                                        }
+                                    }
+                                    //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
+                                    //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
+                                    objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+50000,timeExpired:false});
+                                    fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
+                                        if(error){
+                                            console.error(error);
+                                        }
+                                    })                                    }
+                            })
+                        }
+                        res.end(data);
+                        return;
+                    }
+                }
+            }
+            res.end("Tokenul nu este valid");
         }
     })
 }
