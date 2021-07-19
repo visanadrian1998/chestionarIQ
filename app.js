@@ -1,18 +1,55 @@
 const http = require("http")
 const express = require("express")
-const helmet = require("helmet");
+const expressModifyResponse = require('express-modify-response');
+const crypto = require('crypto');
 const app = express()
 const fs = require("fs")
 uuid = require("node-uuid")
 jsonfile = require("jsonfile")
 const bodyParser = require('body-parser');
 
-app.use(helmet.contentSecurityPolicy({
-    directives:{
-      defaultSrc:["'self'"],
-      scriptSrc:["'self'",'nonce','code.jquery.com','ajax.googleapis.com'],
-      styleSrc:["'self'"],
-      fontSrc:["'self'"]}}));
+app.use((req, res, next) => {
+    res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
+    res.setHeader("Content-Security-Policy", `script-src 'nonce-${res.locals.cspNonce}' 'strict-dynamic'; connect-src 'self' wss://*.tradeville.eu https://*.microsoftonline.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; default-src 'self'; frame-ancestors 'self' https://*.tradeville.eu https://*.microsoft.com https://*.cookiebot.com;frame-src 'self' https://*.cookiebot.com;`);
+    res.setHeader("X-XSS-Protection", "1; mode=block");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Permissions-Policy", "geolocation=(), camera=(), fullscreen=(), microphone=()");
+    res.setHeader("Referrer-Policy", "same-origin");
+    res.setHeader("X-Powered-By", "Tradeville");
+    res.setHeader("X-Frame-Options", "sameorigin");
+    next();
+});
+
+// app.use(
+//     helmet.contentSecurityPolicy({
+//         useDefaults: true,
+//         directives: {
+//             scriptSrc: [(req, res) => `'nonce-${res.locals.cspNonce}'`],
+//         },
+//     })
+// );
+
+app.use(expressModifyResponse(
+    (req, res) => {
+        // return true if you want to modify the response later
+        if (res.getHeader('Content-Type')) {
+            if (res.getHeader('Content-Type').includes('text/html')) {
+                //res.setHeader('Cache-Control', 'no-store');
+                return true;
+            }
+        }
+        return false;
+    },
+    (req, res, body) => {
+        // body is a Buffer with the current response; return Buffer or string with the modified response
+        // can also return a Promise.
+        let newHTML = body.toString();
+        newHTML = newHTML.replace(/<script/g, '<script nonce="' + res.locals.cspNonce + '"').replace(/<style/g, '<style nonce="' + res.locals.cspNonce + '"');
+        return newHTML;
+    }
+));
+
+
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static('public'));
