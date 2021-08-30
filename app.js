@@ -87,12 +87,11 @@ app.get("/chestionarData", (req,res) => {
             res.write("A aparut o problema")
         }else{
             objRez= JSON.parse(dataRezultate);
-            for(let i=0;i<objRez.rezultate.length;i++){
-                if(objRez.rezultate[i].token==token){
-                    timeLeft=(objRez.rezultate[i].timeToFinish-Date.now())/1000;
-                    objRez.rezultate[i].form?formToSendToClient=objRez.rezultate[i].form:"";
+            let rezultatFound=returnTokenOrStatus(objRez.rezultate,token);
+                if(rezultatFound){
+                    timeLeft=(rezultatFound.timeToFinish-Date.now())/1000;
+                    rezultatFound.form?formToSendToClient=rezultatFound.form:"";
                 }
-            }
         }
         readTokensFile(res,token,timeLeft,formToSendToClient);
     })
@@ -222,22 +221,20 @@ function readTokensFile(res,token,timeLeft,formToSendToClient){
             res.write("A aparut o problema")
         }else{
             obj = JSON.parse(dataJSON);
-            for(let i= 0;i<obj.tokens.length;i++){
-                if(obj.tokens[i].token == token){
-                    if(obj.tokens[i].tip == "IQ"){
-                        const chestionar=require("./iq.json");
-                        chestionar[0].time=timeLeft;
-                        chestionar[0].form=formToSendToClient;
-                        res.json(chestionar);
-                        return;
-                    }else if(obj.tokens[i].tip == "Geografie"){
-                        const chestionar=require("./geografie.json");
-                        res.json(chestionar);
-                        return;
-                    }
+            let chestionarFound=returnTokenOrStatus(obj.tokens,token);
+            if(chestionarFound){
+                if(chestionarFound.tip == "IQ"){
+                    const chestionar=require("./iq.json");
+                    chestionar[0].time=timeLeft;
+                    chestionar[0].form=formToSendToClient;
+                    res.json(chestionar);
+                    return;
+                }else if(chestionarFound.tip == "Geografie"){
+                    const chestionar=require("./geografie.json");
+                    res.json(chestionar);
+                    return;
                 }
-            }
-            res.end("Nu am gasit chestionarul aferent.")
+            }else  res.end("Nu am gasit chestionarul aferent.");
         }
     })
 }
@@ -249,10 +246,10 @@ function testareToken(req,res,data, testareAvansata){
         }else{
             obj = JSON.parse(dataJSON);
             //parcurgem toti tokenii si il cautam pe cel curent(din link)
-            for(let i= 0;i<obj.tokens.length;i++){
-                if(obj.tokens[i].token == req.params.link){
+            let tokenFound=returnTokenOrStatus(obj.tokens,req.params.link);
+                if(tokenFound){
                     //cand gasim tokenul, verificam daca are "used=true".Daca da, inseamna ca deja a fost folosit, si nu il mai lasam sa intre in test
-                    if(obj.tokens[i].used == true){
+                    if(tokenFound.used == true){
                         res.end(testareAvansata?"Ati rezolvat chestionarul.Va multumim pentru timpul acordat.":"Tokenul a fost deja utilizat.")
                         return;
                     //daca nu, inseamna ca este un token nefolosit, si il lasam sa intre in test.
@@ -264,12 +261,11 @@ function testareToken(req,res,data, testareAvansata){
                                     res.write("A aparut o problema")
                                 }else{
                                     objRezultate=JSON.parse(dataRezultateJSON);
-                                    for(let i=0;i<objRezultate.rezultate.length;i++){
+                                    let rezultatFound=returnTokenOrStatus(objRezultate.rezultate,req.params.link);
                                     //daca il gasim, inseamna ca testul deja a fost inceput de utilizator si nu facem nimic
-                                        if(objRezultate.rezultate[i].token == req.params.link){
+                                        if(rezultatFound){
                                             return;
                                         }
-                                    }
                                     //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
                                     //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
                                     objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+50000,timeExpired:false});
@@ -284,9 +280,14 @@ function testareToken(req,res,data, testareAvansata){
                         return;
                     }
                 }
-            }
             res.end("Tokenul nu este valid");
         }
     })
+}
+function returnTokenOrStatus(data,comparator){
+    let tokens=data.filter(x=>x.token==comparator);
+    if(tokens.length>0){
+        return tokens[0];
+    }else return false;
 }
 http.createServer(app).listen(3000);
