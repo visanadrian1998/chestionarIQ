@@ -7,6 +7,7 @@ const fs = require("fs")
 uuid = require("node-uuid")
 jsonfile = require("jsonfile")
 const bodyParser = require('body-parser');
+const timpChestionar=5000000;
 
 app.use((req, res, next) => {
     res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
@@ -259,7 +260,7 @@ function testareToken(req,res,data, testareAvansata){
                                         }
                                     //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
                                     //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
-                                    objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+50000,timeExpired:false});
+                                    objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+timpChestionar,timeExpired:false});
                                     fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
                                         if(error){
                                             console.error(error);
