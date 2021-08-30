@@ -20,15 +20,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use(
-//     helmet.contentSecurityPolicy({
-//         useDefaults: true,
-//         directives: {
-//             scriptSrc: [(req, res) => `'nonce-${res.locals.cspNonce}'`],
-//         },
-//     })
-// );
-
 app.use(expressModifyResponse(
     (req, res) => {
         // return true if you want to modify the response later
