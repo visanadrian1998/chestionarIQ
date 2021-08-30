@@ -4,6 +4,12 @@ $(document).ready(function() {
         success: function(res) {
         let chestionarData=res;
         for(let i = 0; i < chestionarData.length;i++){
+            if(chestionarData[i].esteObjInformativ){
+                const title=document.createElement("h1");
+                title.innerText=chestionarData[i].title;
+                $("#submitButton").before(title);
+                continue;  
+            }else{
             const div = document.createElement("div");
             div.className="intrebare";
             let questionp;
@@ -43,6 +49,7 @@ $(document).ready(function() {
                 }
             })
             $("#submitButton").before(div);
+        }
         }
         $(".input").change(function() {
             form = $("#chestionar").serializeArray();
@@ -89,7 +96,7 @@ function posteazaRezultate(rezultat,refreshPagina,interval){
         })
 }
 function faTimer(chestionarData){
-    let time=Math.ceil(chestionarData[0].time);
+    let time=Math.ceil(chestionarData[0].timeLeft);
     const timer = document.getElementById("timer");
     let interval=setInterval(updateCountdown, 1000);
     function updateCountdown() {

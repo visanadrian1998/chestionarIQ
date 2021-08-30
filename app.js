@@ -7,7 +7,6 @@ const fs = require("fs")
 uuid = require("node-uuid")
 jsonfile = require("jsonfile")
 const bodyParser = require('body-parser');
-const timpChestionar=5000000;
 
 app.use((req, res, next) => {
     res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
@@ -215,17 +214,11 @@ function readTokensFile(res,token,timeLeft,formToSendToClient){
             obj = JSON.parse(dataJSON);
             let chestionarFound=returnTokenOrStatus(obj.tokens,token);
             if(chestionarFound){
-                if(chestionarFound.tip == "IQ"){
-                    const chestionar=require("./iq.json");
-                    chestionar[0].time=timeLeft;
+                    const chestionar=require(`./${chestionarFound.tip}.json`);
+                    chestionar[0].timeLeft=timeLeft;
                     chestionar[0].form=formToSendToClient;
                     res.json(chestionar);
                     return;
-                }else if(chestionarFound.tip == "Geografie"){
-                    const chestionar=require("./geografie.json");
-                    res.json(chestionar);
-                    return;
-                }
             }else  res.end("Nu am gasit chestionarul aferent.");
         }
     })
@@ -257,15 +250,20 @@ function testareToken(req,res,data, testareAvansata){
                                     //daca il gasim, inseamna ca testul deja a fost inceput de utilizator si nu facem nimic
                                         if(rezultatFound){
                                             return;
-                                        }
-                                    //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
-                                    //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
-                                    objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+timpChestionar,timeExpired:false});
-                                    fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
-                                        if(error){
-                                            console.error(error);
-                                        }
-                                    })                                    }
+                                        }else{
+                                            // let chestionarFound=returnTokenOrStatus(obj.tokens,token);
+                                            const chestionar=require(`./${tokenFound.tip}.json`);
+                                            const timeTotal=chestionar[0].timeTotal?chestionar[0].timeTotal:3600000
+                                            //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
+                                            //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
+                                            objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+timeTotal,timeExpired:false});
+                                            fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
+                                                if(error){
+                                                    console.error(error);
+                                                }
+                                            })  
+                                            }                                  
+                                    }
                             })
                         }
                         res.end(data);
