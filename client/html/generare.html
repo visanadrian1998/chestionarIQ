@@ -4,21 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="script-src *">
-    <title>Document</title>
+    <title>Generare Test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="../generareCod.js"></script>
     <link rel="stylesheet" href="../css/DefaultStyle.css">
 </head>
 <body>
-    <div id="GenerareContainer">
-        <label for="tipTest">Ce test vrei sa generezi?</label>
-        <select name="tipTest" id="tipTest">
-            <option value="iq">IQ</option>
-            <option value="geografie">Geografie</option>
-            <option value="ALTCEVA">ALTCEVA</option>
-        </select>
-        <input class="GenerareInput" id="GenereazaButton" type="button" value="Genereaza!">
-        <input class="linkGenerat GenerareInput" type="text" value="">
+    <div id="GenerareContainer" class="main-container">
+        <div class="tip-test-menu">
+            <label for="tipTest">Ce test vrei sa generezi?</label>
+            <select name="tipTest" id="tipTest">
+                <option value="iq">IQ</option>
+                <option value="geografie">Geografie</option>
+                <option value="ALTCEVA">ALTCEVA</option>
+            </select>
+        </div>
+        <div class="generare-container">
+            <input class="GenerareInput generare-buton" id="GenereazaButton" type="button" value="Genereaza!">
+            <input class="linkGenerat GenerareInput" id="elem-generat" type="text" value="" readonly>
+            <div class="tooltip">
+                <button id="buton-copiaza" class="copy-button">
+                    <span class="tooltiptext" id="toolTipCopiaza">Copiaza link-ul</span> Copiaza
+                </button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

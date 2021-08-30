@@ -24,4 +24,17 @@ $( document ).ready(function() {
         })
     }
     $("#GenereazaButton").on('click',genereaza);
+
+    function copyTextfunc() {
+        var copyText = document.getElementById("elem-generat");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        
+        var tooltip = document.getElementById("toolTipCopiaza");
+        tooltip.innerHTML = "Link copiat";
+      }
+
+
+    $("#buton-copiaza").on('click',copyTextfunc);
 })
