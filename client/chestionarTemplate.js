@@ -23,7 +23,7 @@ $(document).ready(function() {
             div.append(questionp);
             chestionarData[i].answers.forEach(answer => {
                 if(chestionarData[i].imageAnswers == false){
-                const answerp = document.createElement("p");
+                const answerp = document.createElement("label");
                 const answerInput = document.createElement("input");
                 answerInput.setAttribute("type","radio");
                 answerInput.className="input";
@@ -35,6 +35,7 @@ $(document).ready(function() {
                 }
                 else{
                     const answerdiv = document.createElement("div");
+                    const answerLabel = document.createElement("label");
                     const answerInput = document.createElement("input");
                     answerInput.setAttribute("type","radio");
                     answerInput.className="input";
@@ -43,8 +44,9 @@ $(document).ready(function() {
                     const answerImage=document.createElement("IMG");
                     answerImage.src=answer;
                     answerImage.alt="raspuns";
-                    answerdiv.append(answerInput);
-                    answerdiv.append(answerImage);
+                    answerdiv.append(answerLabel);
+                    answerLabel.append(answerInput);
+                    answerLabel.append(answerImage);
                     div.append(answerdiv);
                 }
             })

@@ -235,7 +235,7 @@ function testareToken(req,res,data, testareAvansata){
                 if(tokenFound){
                     //cand gasim tokenul, verificam daca are "used=true".Daca da, inseamna ca deja a fost folosit, si nu il mai lasam sa intre in test
                     if(tokenFound.used == true){
-                        res.end(testareAvansata?"Ati rezolvat chestionarul.Va multumim pentru timpul acordat.":"Tokenul a fost deja utilizat.")
+                        res.end(testareAvansata?"<p style='font-size: 16pt;'>Ati rezolvat chestionarul.Va multumim pentru timpul acordat.</p>":"<p class='p-final'>Tokenul a fost deja utilizat</p>")
                         return;
                     //daca nu, inseamna ca este un token nefolosit, si il lasam sa intre in test.
                     }else{
