@@ -5,8 +5,6 @@ const crypto = require('crypto');
 const app = express()
 const fs = require("fs")
 uuid = require("node-uuid")
-jsonfile = require("jsonfile")
-const bodyParser = require('body-parser');
 
 app.use((req, res, next) => {
     res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
@@ -42,7 +40,7 @@ app.use(expressModifyResponse(
 
 
 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'));
 app.use(express.static('client'));
 
