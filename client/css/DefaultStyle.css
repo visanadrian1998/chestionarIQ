@@ -93,7 +93,8 @@ body{
 .timerContainer{
     position:fixed;
     top:0;
-    right:0;
+    right:50px;
+    text-align: center;
 }
 .intrebare{
     padding-right:200px;
@@ -112,4 +113,38 @@ body{
     margin: 0 auto;
     display: block;
     border-radius: 4px;
+}
+#chestionar h1{
+    text-align: center;
+    font-size: 16pt;
+    margin-bottom: 3em;
+    margin-top: 1em;
+}
+.intrebare{
+    margin-bottom: 3em;
+    font-size: 14pt;
+    margin-left: 1em;
+}
+.intrebare label{
+    font-weight: normal;
+    font-size: 12pt;
+    display: block;
+    margin-top: .35em;
+    cursor: pointer;
+}
+#submitButton{
+    padding: 1em 1.5em;
+    background-color: #596bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 13pt;
+    margin: 0 auto 2em;
+    display: block;
+    border-radius: 4px;
+}
+@media(max-width:800px){
+    .intrebare{
+        padding-right: 2em;
+    }
 }
