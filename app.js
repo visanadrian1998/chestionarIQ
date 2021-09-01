@@ -2,9 +2,10 @@ const http = require("http")
 const express = require("express")
 const expressModifyResponse = require('express-modify-response');
 const crypto = require('crypto');
-const app = express()
-const fs = require("fs")
-uuid = require("node-uuid")
+const app = express();
+const fs = require("fs");
+uuid = require("node-uuid");
+const pageAccessToken="e0da0f5b-56b5-4316-b01f-58097f8071c2";
 
 app.use((req, res, next) => {
     res.locals.cspNonce = crypto.randomBytes(16).toString("hex");
@@ -86,7 +87,7 @@ app.get("/chestionarData", (req,res) => {
     })
 })
 
-app.get("/generare",function(req,res){
+app.get(`/generare/${pageAccessToken}`,function(req,res){
     res.writeHead(200, {"Content-Type": "text/html" })
     fs.readFile("client/html/generare.html", function(error,data) {
         if(error) {
@@ -97,7 +98,26 @@ app.get("/generare",function(req,res){
                 }
             })
 })
-
+app.get(`/rezultate/${pageAccessToken}`,function(req,res){
+    res.writeHead(200, {"Content-Type": "text/html" })
+    fs.readFile("client/html/rezultate.html", function(error,data) {
+        if(error) {
+             res.writeHead(404)
+             res.write("Error: File Not Found")
+                }else{
+                    res.end(data);
+                }
+            })
+})
+app.get('/rezultateData',function(req,res){
+    fs.readFile('rezultate.json',function readFileCallback(err, data){
+        if (err){
+            console.log(err);
+            res.end(err);
+        } else {
+            res.json(JSON.parse(data))
+    }});
+})
 app.post('/postRezultate', (req, res) => {    
     fs.readFile("rezultate.json", function(errorJSON,dataJSON){
         if(errorJSON){
@@ -254,7 +274,7 @@ function testareToken(req,res,data, testareAvansata){
                                             const timeTotal=chestionar[0].timeTotal?chestionar[0].timeTotal:3600000
                                             //daca nu il gasim, inseamna ca acum intra prima oara in test, si adaugam tokenul in fisierul de rezultate,
                                             //dandu-i un timp de 50 de secunde de rezolvare(de modificat in 30 minute)
-                                            objRezultate.rezultate.push({token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+timeTotal,timeExpired:false});
+                                            objRezultate.rezultate.push({nume:tokenFound.nume,tipTest:tokenFound.tip,token:req.params.link,punctaj:0,form:null,timeToFinish:Date.now()+timeTotal,timeExpired:false});
                                             fs.writeFile('rezultate.json', JSON.stringify(objRezultate), function(error){
                                                 if(error){
                                                     console.error(error);
