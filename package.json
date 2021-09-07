@@ -1,0 +1,28 @@
+{
+  "name": "chestionariq",
+  "version": "1.0.0",
+  "description": "chestionariq",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-modify-response": "^1.0.2",
+    "helmet": "^4.4.1",
+    "jsonfile": "^6.1.0",
+    "node-html-parser": "^2.1.0",
+    "node-uuid": "^1.4.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visanadrian1998/chestionarIQ.git"
+  },
+  "author": "visanadrian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/visanadrian1998/chestionarIQ/issues"
+  },
+  "homepage": "https://github.com/visanadrian1998/chestionarIQ#readme"
+}

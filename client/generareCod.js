@@ -6,8 +6,10 @@ $( document ).ready(function() {
     function genereaza(){
         let randomID=uuidv4();
         let testType=$("#tipTest").val();
+        let testName=$("#numeTest").val();
         let link=`http://localhost:3000/test/${randomID}`;
         let linkObj={};
+        linkObj.nume=testName;
         linkObj.token=randomID;
         linkObj.used=false;
         linkObj.tip=testType;
